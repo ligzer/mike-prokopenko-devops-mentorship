@@ -7,7 +7,7 @@ ssh bandit[0-9]@bandit.labs.overthewire.org -p 2220 # povezujem se sa hostom
 ## Level 0
 
 ```shell
-ls  # gledam sadržaj kučnoj directorija root-a 
+ls  # gledam sadržaj kučnoje directorije root-a 
 cat readme # izlazim sadržaj fajla readme
 ```
 ![level0](screenshots/level0.png)
