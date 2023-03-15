@@ -38,6 +38,7 @@ do
   else
     ssh -tq centos@3.68.91.255 "cd ./mike-prokopenko-week3/$CHAPTER/ && $run"
   fi
+  printf "\n[centos@ip-172-31-34-106 $CHAPTER]$ "
   sleep 0.5
 
   screenshot=screenshots/$RANDOM.jpg
