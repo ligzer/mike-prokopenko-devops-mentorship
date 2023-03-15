@@ -30,15 +30,20 @@ do
   fi
 
   run=$(echo $line|sed 's/^- //')
+
+  OLDIFS=$IFS
+  IFS=\;
+  commands=($run)
+  IFS=$OLDIFS
   clear
-  printf "\n\n\n[centos@ip-172-31-34-106 $CHAPTER]$ $run\n"
-  if [[ $script = bad* ]]
-  then
-    ssh -tq centos@3.68.91.255 "cd ./mike-prokopenko-week3/$CHAPTER/ && timeout 0.005 $run"
-  else
-    ssh -tq centos@3.68.91.255 "cd ./mike-prokopenko-week3/$CHAPTER/ && $run"
-  fi
-  printf "\n[centos@ip-172-31-34-106 $CHAPTER]$ "
+  printf "\n\n\n"
+  for command in "${commands[@]}"
+  do
+    command=$(echo $command)
+    printf "[centos@ip-172-31-34-106 $CHAPTER]$ $command\n"
+    ssh -tq centos@3.68.91.255 "cd ./mike-prokopenko-week3/$CHAPTER/ && $command"
+  done
+  printf "[centos@ip-172-31-34-106 $CHAPTER]$ "
   sleep 0.5
 
   screenshot=screenshots/$RANDOM.jpg
