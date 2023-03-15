@@ -1,0 +1,49 @@
+test-1.sh:
+  - cat
+  - cat < testfile
+  - ls -l > test2; cat test2
+  - who >> test2; cat test2
+  - ls -al badfile > test3; cat test3
+  - ls -al badfile 2> test4; cat test4
+  - ls -al test badtest test2 2> test5; cat test5
+  - ls -al test test2 test3 badtest 2> test6 1> test7; cat test6 ; cat test7
+  - ls -al test test2 test3 badtest &> test7; cat test7
+test-8.sh:
+  - ./test-8.sh
+  - ./test-8.sh 2> test9; cat test9
+test-10.sh:
+  - ./test-10.sh; cat testout
+test-11.sh:
+  - ./test-11.sh; cat testout; cat testerror
+test-12.sh:
+  - ./test-12.sh
+test-13.sh:
+  - ./test-13.sh; cat test13out
+test-14.sh:
+  - ./test-14.sh; cat test14out
+test-15.sh:
+  - ./test-15.sh
+test-16.sh:
+  - ./test-16.sh; cat testfile
+badtest.sh:
+  - ./badtest.sh
+test-17.sh:
+  - ./test-17.sh; cat test17file
+test-18.sh:
+  - ./test-18.sh
+test-19.sh:
+  - ls -al > /dev/null
+  - cat /dev/null
+  - ls -al badfile test16 2> /dev/null
+  - cat testfile
+  - cat /dev/null > testfile
+  - cat testfile
+  - ./test-19.sh
+test-20.sh:
+  - ./test-20.sh
+test-21.sh:
+  - ./test-21.sh
+test-22.sh:
+  - ./test-22.sh
+test-23.sh:
+  - ./test-23.sh members.csv ; cat members.sql
