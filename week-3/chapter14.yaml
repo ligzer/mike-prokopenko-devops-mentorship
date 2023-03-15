@@ -1,0 +1,90 @@
+test-1.sh:
+  - ./test-1.sh 5
+test-2.sh:
+  - ./test-2.sh 2 5
+test-3.sh:
+  - ./test-3.sh Rich
+  - ./test-3.sh Rich Blum
+  - ./test-3.sh 'Rich Blum'
+  - ./test-3.sh "Rich Blum"
+test-4.sh:
+  - ./test-4.sh 1 2 3 4 5 6 7 8 9 10 11 12
+test-5.sh:
+  - bash test-5.sh
+  - bash /home/centos/mike-prokopenko-week3/chapter14/test-5.sh
+test-5b.sh:
+  - bash /home/centos/mike-prokopenko-week3/chapter14/test-5b.sh
+  - ./test-5b.sh
+test-6.sh:
+  - cp test-6.sh addem && chmod u+x addem && ln -s test-6.sh multem && ls -l *em
+  - ./addem 2 5
+  - ./multem 2 5
+test-7.sh:
+  - ./addem 2
+  - ./test-7.sh Rich
+  - ./test-7.sh
+test-8.sh:
+  - ./test-8.sh
+  - ./test-8.sh 1 2 3 4 5
+  - ./test-8.sh 1 2 3 4 5 6 7 8 9 10
+  - ./test-8.sh "Rich Blum"
+test-9.sh:
+  - bash test-9.sh
+  - bash test-9.sh 10
+  - bash test-9.sh 10 15
+badtest-1.sh:
+  - ./badtest-1.sh 10
+test-10.sh:
+  - bash test-10.sh 1 2 3 4 5
+  - bash test-10.sh
+test-11.sh:
+  - ./test-11.sh rich barbara katie jessica
+test-12.sh:
+  - ./test-12.sh rich barbara katie jessica
+test-13.sh:
+  - ./test-13.sh rich barbara katie jessica
+test-14.sh:
+  - ./test-14.sh 1 2 3 4 5
+test-15.sh:
+  - ./test-15.sh -a -b -c -d
+  - ./test-15.sh -d -c -a
+test-16.sh:
+  - ./test-16.sh -c -a -b test-1 test-2 test-3
+  - ./test-16.sh -c -a -b -- test-1 test-2 test-3
+test-17.sh:
+  - ./test-17.sh -a -b test-1 -d
+  - ./test-17.sh -b test-1 -a -d
+  - ./test-17.sh -ac
+test-18.sh:
+  - getopt ab:cd -a -b test-1 -cd test-2 test-3
+  - getopt ab:cd -a -b test-1 -cde test-2 test-3
+  - getopt -q ab:cd -a -b test-1 -cde test-2 test-3
+  - ./test-18.sh -ac
+  - ./test-18.sh -a -b test-1 -cd test-2 test-3 test-4
+  - ./test-18.sh -a -b test-1 -cd "test-2 test-3" test-4
+test-19.sh:
+  - ./test-19.sh -ab test-1 -c
+  - ./test-19.sh -b "test-1 test-2" -a
+  - ./test-19.sh -abtest-1
+  - ./test-19.sh -d
+  - ./test-19.sh -acde
+test-20.sh:
+  - ./test-20.sh -a -b test-1 -d test-2 test-3 test-4
+test-21.sh:
+  - ./test-21.sh # Enter your name
+test-22.sh:
+  - ./test-22.sh # Enter your age
+test-23.sh:
+  - ./test-23.sh # Enter Name and Surname
+test-24.sh:
+  - ./test-24.sh # Enter Name
+test-25.sh:
+  - ./test-25.sh # Quickly!
+  - ./test-25.sh # Wait untill timeout
+test-26.sh:
+  - ./test-26.sh # Enter Y
+  - ./test-26.sh # Enter n
+test-27.sh:
+  - ./test-27.sh # Enter secret
+test-28.sh:
+  - ./test-28.sh
