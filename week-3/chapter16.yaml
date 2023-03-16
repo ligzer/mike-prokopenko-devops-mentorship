@@ -1,0 +1,30 @@
+test-1.sh:
+  - ./test-1.sh # PRess CTRL+C
+test-2.sh:
+  - ./test-2.sh ; ./test-2.sh # Press CTRL+C
+test-3.sh:
+  - ./test-3.sh
+test-3b.sh:
+  - ./test-3b.sh
+test-4.sh:
+  - ./test-4.sh &
+test-5.sh:
+  - ./test5.sh &
+  - nohup ./test1.sh & ; cat nohup.out
+test-6.sh:
+  - ./test-6.sh
+test-7.sh:
+  - ./test-7.sh
+test-8.sh:
+  - ./test-8.sh
+test-9.sh:
+  - ./test-9.sh
+test-10.sh:
+  - ./test-10.sh; ./test10.sh > test10.out & ; jobs; jobs -l
+  - ./test10.sh > test10a.out & ./test10.sh > test10b.out & ./test10.sh > test10b.out & jobs -l
+test-11.sh:
+  - ./test-11.sh
+test-12.sh:
+  - ./test-12.sh
+test-13.sh:
+  - ./test-13.sh

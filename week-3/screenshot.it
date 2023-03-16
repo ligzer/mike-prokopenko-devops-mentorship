@@ -1,0 +1,19 @@
+#!/bin/bash
+
+CHAPTER=chapter16
+
+sleep 3
+echo "## Script $script" >> $CHAPTER/Readme.md
+echo >> $CHAPTER/Readme.md
+echo "\`\`\`shell" >> $CHAPTER/Readme.md
+echo >> $CHAPTER/Readme.md
+echo "\`\`\`" >> $CHAPTER/Readme.md
+screenshot=screenshots/$RANDOM.jpg
+gnome-screenshot -w -f "$CHAPTER/$screenshot"
+
+convert -crop 1890x960+0+95 "$CHAPTER/$screenshot" "$CHAPTER/$screenshot"
+convert -trim "$CHAPTER/$screenshot" "$CHAPTER/$screenshot"
+convert -bordercolor "#1e1e1e" -border 10 "$CHAPTER/$screenshot" "$CHAPTER/$screenshot"
+echo >> $CHAPTER/Readme.md
+echo "![run $run]($screenshot)">> $CHAPTER/Readme.md
+echo >> $CHAPTER/Readme.md
