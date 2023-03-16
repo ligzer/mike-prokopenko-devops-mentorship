@@ -1,0 +1,60 @@
+#!/bin/bash
+
+CHAPTER=$1
+YAML=$CHAPTER.yaml
+
+rm -rf $CHAPTER/screenshots
+mkdir $CHAPTER/screenshots
+ssh centos@3.68.91.255 mkdir mike-prokopenko-week3
+scp -r $CHAPTER centos@3.68.91.255:~/mike-prokopenko-week3/
+
+echo > $CHAPTER/Readme.md
+
+readarray -t lines < "$YAML"
+for line in "${lines[@]}"
+do
+  # Dump way to parse yaml
+  if [[ $line == *: ]]
+  then
+    OLDIFS=$IFS
+    IFS=:
+    script=$(echo $line)
+    IFS=$OLDIFS
+    echo "## Script $script" >> $CHAPTER/Readme.md
+    echo >> $CHAPTER/Readme.md
+    echo "\`\`\`shell" >> $CHAPTER/Readme.md
+    cat $CHAPTER/$script >> $CHAPTER/Readme.md
+    echo >> $CHAPTER/Readme.md
+    echo "\`\`\`" >> $CHAPTER/Readme.md
+    continue
+  fi
+
+  run=$(echo $line|sed 's/^- //')
+
+  OLDIFS=$IFS
+  IFS=\;
+  commands=($run)
+  IFS=$OLDIFS
+  clear
+  printf "\n\n\n"
+  for command in "${commands[@]}"
+  do
+    command=$(echo $command)
+    printf "[centos@ip-172-31-34-106 $CHAPTER]$ $command\n"
+    ssh -tq centos@3.68.91.255 "cd ./mike-prokopenko-week3/$CHAPTER/ && $command"
+  done
+  printf "[centos@ip-172-31-34-106 $CHAPTER]$ "
+  sleep 0.5
+
+  screenshot=screenshots/$RANDOM.jpg
+  gnome-screenshot -w -f "$CHAPTER/$screenshot"
+
+  convert -crop 1890x960+0+95 "$CHAPTER/$screenshot" "$CHAPTER/$screenshot"
+  convert -trim "$CHAPTER/$screenshot" "$CHAPTER/$screenshot"
+  convert -bordercolor "#1e1e1e" -border 10 "$CHAPTER/$screenshot" "$CHAPTER/$screenshot"
+  echo >> $CHAPTER/Readme.md
+  echo "![run $run]($screenshot)">> $CHAPTER/Readme.md
+
+done
+
+ssh centos@3.68.91.255 rm -rf mike-prokopenko-week3
